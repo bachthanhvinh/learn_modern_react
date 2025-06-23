@@ -6,6 +6,9 @@ import Lesson1 from "./Lesson/lesson1/Lesson1";
 import FormControl from "./Lesson/L5_control_uncontrolled/formControl";
 import FormUnControlled from "./Lesson/L5_control_uncontrolled/formUnControlled";
 import TranditionalForm from "./Lesson/lesson6FormMikvsReactForm/TranditionalForm";
+import FormHook from "./Lesson/lesson6FormMikvsReactForm/FormHook";
+import AnonymousFunction from "./Lesson/Lesson7_anonymousf/AnonymousFunction";
+import Lesson8 from "./Lesson/Lesson8_addEHandlers/Lesson8";
 
 function App() {
   // const [name, setName] = useState("");
@@ -27,7 +30,10 @@ function App() {
       {/* <FormControl />
        */}
       {/* <FormUnControlled /> */}
-      <TranditionalForm />
+      {/* <TranditionalForm /> */}
+      {/* <FormHook /> */}
+      {/* <AnonymousFunction /> */}
+      <Lesson8 />
     </>
   );
 }

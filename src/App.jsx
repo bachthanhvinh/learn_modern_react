@@ -2,14 +2,15 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import Lesson1 from "./Lesson/lesson1/Lesson1";
-import FormControl from "./Lesson/L5_control_uncontrolled/formControl";
-import FormUnControlled from "./Lesson/L5_control_uncontrolled/formUnControlled";
-import TranditionalForm from "./Lesson/lesson6FormMikvsReactForm/TranditionalForm";
-import FormHook from "./Lesson/lesson6FormMikvsReactForm/FormHook";
-import AnonymousFunction from "./Lesson/Lesson7_anonymousf/AnonymousFunction";
-import Lesson8 from "./Lesson/Lesson8_addEHandlers/Lesson8";
-import Lesson9 from "./Lesson/Lesson9/Lesson9";
+import Lesson1 from "./Chapter10/lesson1/Lesson1";
+import FormControl from "./Chapter10/L5_control_uncontrolled/formControl";
+import FormUnControlled from "./Chapter10/L5_control_uncontrolled/formUnControlled";
+import TranditionalForm from "./Chapter10/lesson6FormMikvsReactForm/TranditionalForm";
+import FormHook from "./Chapter10/lesson6FormMikvsReactForm/FormHook";
+import AnonymousFunction from "./Chapter10/Lesson7_anonymousf/AnonymousFunction";
+import Lesson8 from "./Chapter10/Lesson8_addEHandlers/Lesson8";
+import Lesson9 from "./Chapter10/Lesson9/Lesson9";
+import Lesson10 from "./Chapter10/Lesson10/Lesson10";
 
 function App() {
   // const [name, setName] = useState("");
@@ -35,7 +36,8 @@ function App() {
       {/* <FormHook /> */}
       {/* <AnonymousFunction /> */}
       {/* <Lesson8 /> */}
-      <Lesson9 />
+      {/* <Lesson9 /> */}
+      <Lesson10 />
     </>
   );
 }

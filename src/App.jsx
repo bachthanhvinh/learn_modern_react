@@ -9,6 +9,7 @@ import TranditionalForm from "./Lesson/lesson6FormMikvsReactForm/TranditionalFor
 import FormHook from "./Lesson/lesson6FormMikvsReactForm/FormHook";
 import AnonymousFunction from "./Lesson/Lesson7_anonymousf/AnonymousFunction";
 import Lesson8 from "./Lesson/Lesson8_addEHandlers/Lesson8";
+import Lesson9 from "./Lesson/Lesson9/Lesson9";
 
 function App() {
   // const [name, setName] = useState("");
@@ -33,7 +34,8 @@ function App() {
       {/* <TranditionalForm /> */}
       {/* <FormHook /> */}
       {/* <AnonymousFunction /> */}
-      <Lesson8 />
+      {/* <Lesson8 /> */}
+      <Lesson9 />
     </>
   );
 }

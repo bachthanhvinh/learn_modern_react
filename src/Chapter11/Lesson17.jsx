@@ -1,5 +1,5 @@
-// 7 kiểu dữ liệu nguyên thủy của javascript
 const Lesson1 = () => {
+  ////////// 7 kiểu dữ liệu nguyên thủy của javascript///////////////
   // 1. String
   //- là tập hợp của chuỗi ký tự, bắt đầu và kết thúc với dấu nháy đơn ' hoặc dấu nháy đôi "
   let greeting = "hi";
@@ -27,6 +27,16 @@ const Lesson1 = () => {
   x = x + 1; // 9007199254740992
   x = x + 1; // 9007199254740992 (same as above => bugs)
   // 7.symbol(ES6)
+
+  //////// object datatypes ///////
+  let a = {};
+  console.log(">>> check type a =", typeof a);
+  let b = { name: "vinh", address: "thanhvinh" };
+  console.log(">>> check type b =", typeof b);
+  let c = ["a", "b", "c"];
+  console.log(">>> chekc type c =", typeof c);
+  let d = new Date();
+  console.log(">>> check type d =", typeof d);
   return <></>;
 };
 export default Lesson1;

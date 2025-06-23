@@ -11,6 +11,8 @@ import AnonymousFunction from "./Chapter10/Lesson7_anonymousf/AnonymousFunction"
 import Lesson8 from "./Chapter10/Lesson8_addEHandlers/Lesson8";
 import Lesson9 from "./Chapter10/Lesson9/Lesson9";
 import Lesson10 from "./Chapter10/Lesson10/Lesson10";
+import Lesson19 from "./Chapter11/Lesson19";
+import Lesson20 from "./Chapter11/Lesson20";
 
 function App() {
   // const [name, setName] = useState("");
@@ -37,7 +39,9 @@ function App() {
       {/* <AnonymousFunction /> */}
       {/* <Lesson8 /> */}
       {/* <Lesson9 /> */}
-      <Lesson10 />
+      {/* <Lesson10 /> */}
+      {/* <Lesson19 /> */}
+      <Lesson20 />
     </>
   );
 }

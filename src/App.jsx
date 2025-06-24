@@ -17,6 +17,7 @@ import Lesson21 from "./Chapter11/Lesson21";
 import Lesson22 from "./Chapter11/Lesson22";
 import Lesson23 from "./Chapter11/Lesson23";
 import Lesson24 from "./Chapter11/Lesson24";
+import Lesson25 from "./Chapter11/Lesson25";
 
 function App() {
   // const [name, setName] = useState("");
@@ -48,7 +49,8 @@ function App() {
       {/* <Lesson20 /> */}
       {/* <Lesson22 /> */}
       {/* <Lesson23 /> */}
-      <Lesson24 />
+      {/* <Lesson24 /> */}
+      <Lesson25 />
     </>
   );
 }

@@ -30,7 +30,7 @@ export default function Lesson23() {
   // console.log("person", person, "NewPerson", newPerson);
 
   // vấn làm thay đổi mảng chính khi đi sâu vào tầng 2
-  // vậy Object.assign vẫn giống như spread syntax cũng là shallw chỉ coppy được 1 tầng
+  // vậy Object.assign vẫn giống như spread syntax cũng là shallow chỉ copy được 1 tầng
   newPerson.address.city = "phú thọ";
   console.log("person", person, "NewPerson", newPerson);
 }

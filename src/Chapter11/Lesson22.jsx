@@ -1,5 +1,5 @@
 export default function Lesson22() {
-  //// Spread syntax {...} để coppy array/object
+  //// Spread syntax {...} để copy array/object
   const person = {
     name: "vinh",
     address: {
@@ -23,7 +23,7 @@ export default function Lesson22() {
   //   newPerson.address.city = "phú thọ";
   //   console.log("person", person, "NewPerson", newPerson);
 
-  // muốn coppy phải làm như này không khuyên dùng cách này
+  // muốn copy phải làm như này không khuyên dùng cách này
   const newPerson = {
     ...person,
     address: {

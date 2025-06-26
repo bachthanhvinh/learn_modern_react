@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import HomeWork27 from "./HomeWork27";
+import CreateUser from "./CreateUser";
 import { getUser } from "../../services/apiServices";
-import "./HomeWork26.scss";
-import User from "./user";
-const HomeWork26 = () => {
+
+const Lesson27 = () => {
   const [dataUser, setDataUser] = useState([]);
 
   useEffect(() => {
@@ -12,20 +13,19 @@ const HomeWork26 = () => {
   const getApiUser = async () => {
     const res = await getUser(1, 3);
     if (res.EC === 0) {
-      setDataUser(res.DT);
+      setDataUser(res.DT.users);
     } else {
     }
   };
-
+  const addUser = (formData) => {
+    setDataUser([formData, ...dataUser]);
+  };
   return (
     <>
-      <section className="section-1">
-        {dataUser?.users?.map((item, index) => {
-          return <User key={item.id} item={item} index={index} />;
-        })}
-      </section>
+      <h1>Lesson27</h1>
+      <CreateUser addUser={addUser} />
+      <HomeWork27 dataUser={dataUser} />
     </>
   );
 };
-
-export default HomeWork26;
+export default Lesson27;

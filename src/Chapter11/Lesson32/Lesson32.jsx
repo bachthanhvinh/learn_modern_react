@@ -4,6 +4,7 @@ const Lesson32 = () => {
   const [data, setData] = useState({
     name: "vinh",
     age: "21",
+    postion: "full",
   });
   const handleClick = () => {
     // bad code

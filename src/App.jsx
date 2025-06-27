@@ -23,6 +23,7 @@ import Lesson26 from "./Chapter11/Lesson26/Lesson26";
 import Lesson27 from "./Chapter11/Lesson27/Lesson27";
 import Lesson28 from "./Chapter11/Lesson28/Lesson28";
 import Lesson29 from "./Chapter11/Lesson29/Lesson29";
+import Lesson30 from "./Chapter11/Lesson30/Lesson30";
 
 function App() {
   // const [name, setName] = useState("");
@@ -61,6 +62,7 @@ function App() {
       {/* <Lesson27 /> */}
       {/* <Lesson28 /> */}
       <Lesson29 />
+      {/* <Lesson30 /> */}
     </>
   );
 }

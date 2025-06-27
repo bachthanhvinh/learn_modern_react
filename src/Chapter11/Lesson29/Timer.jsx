@@ -11,6 +11,11 @@ const Timer = () => {
   //       clearInterval(time);
   //     };
   //   }, [timer]);
+  //   useEffect(() => {
+  //     setInterval(() => {
+  //       setTimer((timer) => timer - 1);
+  //     }, 1000);
+  //   }, []);
   return (
     <>
       <div className="timerCount">Timer: {timer}</div>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Lesson28 = () => {
+const Lesson31 = () => {
   const [count, setCount] = useState(0);
   const handleClickPlus = () => {
     // this.state({state}, callback);
@@ -11,9 +11,11 @@ const Lesson28 = () => {
     setCount((count) => count + 1); // setCount(0 +1)
     //queue hàng đợi
 
+    // trong 3 cái này thì trong react chỉ render đúng 1 lần gộp thành 1 và chạy 1 lần batching
     // setCount(count + 1);
     // setCount(count + 1);
     // setCount(count + 1);
+    // batching
   };
   return (
     <>
@@ -23,4 +25,4 @@ const Lesson28 = () => {
   );
 };
 
-export default Lesson28;
+export default Lesson31;

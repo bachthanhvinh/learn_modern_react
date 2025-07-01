@@ -29,6 +29,13 @@ const Lesson34 = () => {
     // });
   };
   const handleOnChangeCountry = (e) => {
+    // setFormData({
+    //   ...formData,
+    //   address: {
+    //     ...formData.address,
+    //     country: e.target.value,
+    //   },
+    // });
     setFormData((draft) => {
       // modify state (Không phải là sửa đổi trực tiếp state của react)
       // sửa đổi thông qua draft
@@ -46,7 +53,7 @@ const Lesson34 = () => {
         <input
           type="text"
           name="province"
-          value={formData.address.province}
+          defaultValue={formData.address.province}
           // onChange={(e) => handleOnChangeProvince(e)}
         />
         <label htmlFor="">country:</label>

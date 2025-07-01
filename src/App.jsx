@@ -29,6 +29,8 @@ import Lesson32 from "./Chapter11/Lesson32/Lesson32";
 import Lesson33 from "./Chapter11/Lesson33/Lesson33";
 import Lesson33_2 from "./Chapter11/Lesson33/Lesson33_2";
 import Lesson34 from "./Chapter11/Lesson34/Lesson34";
+import Login from "./Component/Authen/Login";
+import Lesson35 from "./Chapter11/Lesson35/Lesson35";
 
 function App() {
   // const [name, setName] = useState("");
@@ -47,6 +49,7 @@ function App() {
         {" "}
         <Lesson1 />
       </div> */}
+      <Login />
       {/* <FormControl />
        */}
       {/* <FormUnControlled /> */}
@@ -72,7 +75,8 @@ function App() {
       {/* <Lesson32 /> */}
       {/* <Lesson33 /> */}
       {/* <Lesson33_2 /> */}
-      <Lesson34 />
+      {/* <Lesson34 /> */}
+      <Lesson35 />
     </>
   );
 }

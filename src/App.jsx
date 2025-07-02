@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -31,11 +31,19 @@ import Lesson33_2 from "./Chapter11/Lesson33/Lesson33_2";
 import Lesson34 from "./Chapter11/Lesson34/Lesson34";
 import Login from "./Component/Authen/Login";
 import Lesson35 from "./Chapter11/Lesson35/Lesson35";
-
+import { setLoadingBarRef } from "./utils/axiosCustome";
+import LoadingBar from "react-top-loading-bar";
 function App() {
   // const [name, setName] = useState("");
+  const loadingRef = useRef(null);
+
+  useEffect(() => {
+    setLoadingBarRef(loadingRef); // Gửi ref sang axios interceptor
+  }, []);
   return (
     <>
+      <LoadingBar color="#f11946" height={3} ref={loadingRef} />
+
       {/* <div>
         <label htmlFor="">Name: </label>
         <input
@@ -49,7 +57,6 @@ function App() {
         {" "}
         <Lesson1 />
       </div> */}
-      <Login />
       {/* <FormControl />
        */}
       {/* <FormUnControlled /> */}
@@ -76,6 +83,8 @@ function App() {
       {/* <Lesson33 /> */}
       {/* <Lesson33_2 /> */}
       {/* <Lesson34 /> */}
+
+      <Login />
       <Lesson35 />
     </>
   );

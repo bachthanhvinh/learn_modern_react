@@ -285,19 +285,19 @@ function QuizQA() {
     // }
   };
   const handleOnChangeAnswer = (type, qId, aId, value) => {
-    // setQuestions((draft) => {
-    //   const question = draft.find((q) => q.id === qId);
-    //   if (!question) return;
-    //   const answer = question.answers.find((a) => a.id === aId);
-    //   if (answer) {
-    //     if (type === "ANSWER") {
-    //       answer.description = value;
-    //     }
-    //     if (type === "CHECKBOX") {
-    //       answer.isCorrect = value;
-    //     }
-    //   }
-    // });
+    setQuestions((draft) => {
+      const question = draft.find((q) => q.id === qId);
+      if (!question) return;
+      const answer = question.answers.find((a) => a.id === aId);
+      if (answer) {
+        if (type === "ANSWER") {
+          answer.description = value;
+        }
+        if (type === "CHECKBOX") {
+          answer.isCorrect = value;
+        }
+      }
+    });
     //cloneDeep
     // let CloneQuestions = _.cloneDeep(questions);
     // const index = CloneQuestions.findIndex((q) => q.id === qId);
@@ -419,19 +419,28 @@ function QuizQA() {
     }
   };
   const handleClickPreview = (qId) => {
-    const CloneQuestions = _.cloneDeep(questions);
+    setQuestions((draft) => {
+      let question = draft.find((q) => q.id === qId);
+      if (!question) return;
+      setDataPreview({
+        src: URL.createObjectURL(question.imageFile),
+        title: question.imageName,
+      });
+      setIsPreview(true);
+    });
 
-    const index = CloneQuestions.findIndex((q) => q.id === qId);
-
-    if (index > -1) {
-      setDataPreview(
-        {
-          src: URL.createObjectURL(CloneQuestions[index].imageFile),
-          title: CloneQuestions[index].imageName,
-        },
-        setIsPreview(true)
-      );
-    }
+    //cloneDeep
+    // const CloneQuestions = _.cloneDeep(questions);
+    // const index = CloneQuestions.findIndex((q) => q.id === qId);
+    // if (index > -1) {
+    //   setDataPreview(
+    //     {
+    //       src: URL.createObjectURL(CloneQuestions[index].imageFile),
+    //       title: CloneQuestions[index].imageName,
+    //     },
+    //     setIsPreview(true)
+    //   );
+    // }
   };
   console.log(questions);
   return (

@@ -5,7 +5,7 @@ import App from "./App.jsx";
 import { Provider } from "react-redux";
 import { store } from "./redux/store.jsx";
 import { Bounce, ToastContainer } from "react-toastify";
-
+import "react-awesome-lightbox/build/style.css";
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <App />

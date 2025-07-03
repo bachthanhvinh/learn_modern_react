@@ -2,6 +2,7 @@ import { useState } from "react";
 import { login } from "../../services/apiServices";
 import { useDispatch } from "react-redux";
 import { doLogin } from "../../redux/action/Action";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -21,9 +22,9 @@ const Login = () => {
     console.log(data);
     if (data?.EC === 0) {
       dispatch(doLogin(data));
-      alert("Success");
+      toast.success(data.EM);
     } else {
-      alert("Error");
+      toast.error(data.EM);
     }
   };
   return (

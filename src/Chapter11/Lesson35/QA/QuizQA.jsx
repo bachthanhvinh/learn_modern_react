@@ -113,8 +113,22 @@ function QuizQA() {
 
   const handleClickQ = (type, questionId) => {
     if (type === "ADD") {
-      // let CloneQuestions = _.cloneDeep(questions);
-
+      // const newQuestion = {
+      //   id: uuidv4(),
+      //   description: "",
+      //   imageFile: "",
+      //   imageName: "",
+      //   isCheckQ: true,
+      //   answers: [
+      //     {
+      //       id: uuidv4(),
+      //       description: "",
+      //       isCorrect: false,
+      //       isCheckA: true,
+      //     },
+      //   ],
+      // };
+      // setQuestions([...questions, newQuestion]);
       setQuestions((draft) => {
         draft.push({
           id: uuidv4(),
@@ -140,10 +154,11 @@ function QuizQA() {
       });
       setTimeout(() => {
         setQuestions((draft) => {
-          const index = draft.findIndex((item) => item.id === questionId.id);
-          if (index !== -1) {
-            draft.splice(index, 1);
-          }
+          // const index = draft.findIndex((item) => item.id === questionId.id);
+          // if (index !== -1) {
+          //   draft.splice(index, 1);
+          // }
+          return draft.filter((item) => item.id !== questionId.id);
         });
       }, 300);
 
@@ -214,11 +229,17 @@ function QuizQA() {
       });
       setTimeout(() => {
         setQuestions((draft) => {
-          const question = draft.find((item) => item.id === questionId.id);
-          if (!question) return;
-          const aId = question.answers.findIndex((a) => a.id === answerId.id);
-          if (aId !== -1) {
-            question.answers.splice(aId, 1);
+          // const question = draft.find((item) => item.id === questionId.id);
+          // if (!question) return;
+          // const aId = question.answers.findIndex((a) => a.id === answerId.id);
+          // if (aId !== -1) {
+          //   question.answers.splice(aId, 1);
+          // }
+          const index = draft.findIndex((item) => item.id === questionId.id);
+          if (index !== -1) {
+            draft[index].answers = draft[index].answers.filter(
+              (a) => a.id !== answerId.id
+            );
           }
         });
       }, 300);
@@ -335,10 +356,12 @@ function QuizQA() {
       }
     }
     if (isvalidq === true) {
-      questions.map((q) => {
-        q.isCheckQ = true;
+      setQuestions((draft) => {
+        draft.forEach((q) => {
+          q.isCheckQ = true;
+        });
       });
-      setQuestions([...questions]);
+      // setQuestions([...questions]);
     }
     if (isvalidq === false) {
       setQuestions([...questions]);
@@ -363,13 +386,15 @@ function QuizQA() {
     }
 
     if (isvalidAnswer === true) {
-      questions.forEach((q) => {
-        q.answers.forEach((a) => {
-          a.isCheckA = true;
+      setQuestions((draft) => {
+        draft.forEach((q) => {
+          q.answers.forEach((a) => {
+            a.isCheckA = true;
+          });
         });
       });
 
-      setQuestions([...questions]);
+      // setQuestions([...questions]);
     }
 
     if (isvalidAnswer === false) {

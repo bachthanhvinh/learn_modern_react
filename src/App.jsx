@@ -33,6 +33,7 @@ import Login from "./Component/Authen/Login";
 import Lesson35 from "./Chapter11/Lesson35/Lesson35";
 import { setLoadingBarRef } from "./utils/axiosCustome";
 import LoadingBar from "react-top-loading-bar";
+import Lesson36 from "./Chapter11/Lesson36/Lesson36";
 function App() {
   // const [name, setName] = useState("");
   const loadingRef = useRef(null);
@@ -85,7 +86,8 @@ function App() {
       {/* <Lesson34 /> */}
 
       <Login />
-      <Lesson35 />
+      {/* <Lesson35 /> */}
+      <Lesson36 />
     </>
   );
 }

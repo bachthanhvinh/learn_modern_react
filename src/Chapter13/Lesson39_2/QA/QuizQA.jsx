@@ -176,17 +176,15 @@ function QuizQA() {
       //   });
       // });
       setTimeout(() => {
-        setQuestionIds((draft) =>
-          draft.filter((item) => {
-            item.id !== questionId.id;
-          })
-        );
-        // setQuestionEntities((draft) => {
-        //   delete draft[questionId.id];
-        // });
+        setQuestionIds((draft) => draft.filter((id) => id !== questionId.id));
+        setQuestionEntities((draft) => {
+          delete draft[questionId.id];
+        });
       }, 300);
     }
   };
+  console.log(questionIds);
+  console.log(questionEntities);
   const handleClickA = (type, questionId, answerId) => {
     if (type === "ADDANSWER") {
       setQuestions((draft) => {

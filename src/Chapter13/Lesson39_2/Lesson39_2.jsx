@@ -1,8 +1,8 @@
 import { normalize, schema } from "normalizr";
 const Lesson39_2 = (props) => {
   const runExample1 = false;
-  const runExample2 = false;
-  const runExample3 = true;
+  const runExample2 = true;
+  const runExample3 = false;
   if (runExample1) {
     const myPost = {
       id: "123",

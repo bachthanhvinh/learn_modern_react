@@ -166,15 +166,7 @@ function QuizQA() {
         const q = draft[questionId.id];
         if (q) q.isRemoving = true;
       });
-      // setQuestions((draft) => {
-      //   const q = draft.find((item) => item.id === questionId.id);
-      //   if (q) q.isRemoving = true;
-      // });
-      // setQuestionEntities((draft) => {
-      //   questionIds.forEach((id) => {
-      //     return draft[id].filter((item) => item.id !== questionId.id);
-      //   });
-      // });
+
       setTimeout(() => {
         setQuestionIds((draft) => draft.filter((id) => id !== questionId.id));
         setQuestionEntities((draft) => {
@@ -183,85 +175,110 @@ function QuizQA() {
       }, 300);
     }
   };
-  console.log(questionIds);
-  console.log(questionEntities);
+
   const handleClickA = (type, questionId, answerId) => {
     if (type === "ADDANSWER") {
-      setQuestions((draft) => {
-        const q = draft.find((item) => {
-          return item.id === questionId.id;
-        });
+      const newAId = uuidv4();
 
-        if (q) {
-          q.answers.push({
-            id: uuidv4(),
-            description: "",
-            isCorrect: false,
-            isCheckA: true,
-          });
+      setAnswerEntities((draft) => {
+        draft[newAId] = {
+          id: newAId,
+          description: "",
+          isCorrect: false,
+          isCheckA: true,
+        };
+      });
+
+      setQuestionEntities((draft) => {
+        const question = draft[questionId.id];
+        if (question) {
+          question.answers.push(newAId);
         }
       });
     }
 
     if (type === "REMOVEANSWER") {
-      // use-immer mutate
-      setQuestions((draft) => {
-        const question = draft.find((item) => item.id === questionId.id);
-        if (!question) return;
-        const answer = question.answers.find((a) => a.id === answerId.id);
-        if (answer) {
-          answer.isRemoving = true;
-        }
+      setAnswerEntities((draft) => {
+        const a = draft[answerId.id];
+        if (a) a.isRemoving = true;
       });
       setTimeout(() => {
-        setQuestions((draft) => {
-          const index = draft.findIndex((item) => item.id === questionId.id);
-          if (index !== -1) {
-            draft[index].answers = draft[index].answers.filter(
-              (a) => a.id !== answerId.id
+        setQuestionEntities((draft) => {
+          const question = draft[questionId.id];
+          if (question) {
+            question.answers = question.answers.filter(
+              (id) => id !== answerId.id
             );
           }
+        });
+        setAnswerEntities((draft) => {
+          delete draft[answerId.id];
         });
       }, 300);
     }
   };
-
+  console.log("answers:", answerEntities);
+  console.log("questions:", questionEntities);
   const handleOnChangeQuestion = (type, qId, value) => {
     if (type === "QUESTION") {
-      //use-immer
-      setQuestions((draft) => {
-        let question = draft.find((q) => q.id === qId);
-        if (!question) return;
-        question.description = value;
+      setQuestionEntities((draft) => {
+        const question = draft[qId];
+        if (question) {
+          question.description = value;
+        }
       });
+      //use-immer
+      // setQuestions((draft) => {
+      //   let question = draft.find((q) => q.id === qId);
+      //   if (!question) return;
+      //   question.description = value;
+      // });
     }
   };
   const handleOnchangeQuestionFile = (qId, event) => {
     // use-immer
     const file = event?.target?.files[0];
     if (!file) return;
-    setQuestions((draft) => {
-      let question = draft.find((q) => q.id === qId);
+    setQuestionEntities((draft) => {
+      const question = draft[qId];
       if (question) {
         question.imageFile = file;
         question.imageName = file.name;
       }
     });
+    // setQuestions((draft) => {
+    //   let question = draft.find((q) => q.id === qId);
+    //   if (question) {
+    //     question.imageFile = file;
+    //     question.imageName = file.name;
+    //   }
+    // });
   };
   const handleOnChangeAnswer = (type, qId, aId, value) => {
-    setQuestions((draft) => {
-      const question = draft.find((q) => q.id === qId);
-      if (!question) return;
-      const answer = question.answers.find((a) => a.id === aId);
-      if (answer) {
+    setAnswerEntities((draft) => {
+      const a = draft[aId];
+      if (a) {
         if (type === "ANSWER") {
-          answer.description = value;
+          a.description = value;
         }
         if (type === "CHECKBOX") {
-          answer.isCorrect = value;
+          a.isCorrect = value;
         }
       }
     });
+    // setQuestions((draft) => {
+    //   const question = draft.find((q) => q.id === qId);
+    //   if (!question) return;
+    //   const answer = question.answers.find((a) => a.id === aId);
+    //   if (answer) {
+    //     if (type === "ANSWER") {
+    //       answer.description = value;
+    //     }
+    //     if (type === "CHECKBOX") {
+    //       answer.isCorrect = value;
+    //     }
+    //   }
+    // });
   };
 
   const handleSubmitQuestionForQuiz = async () => {
@@ -273,24 +290,30 @@ function QuizQA() {
 
     let isvalidq = true;
     let flagQ1 = 0;
-    for (let i = 0; i < questions.length; i++) {
-      if (!questions[i].description) {
-        questions[i].isCheckQ = false;
+    for (let i = 0; i < questionEntities.length; i++) {
+      if (!questionEntities[i].description) {
+        questionEntities[i].isCheckQ = false;
         isvalidq = false;
         flagQ1 = i;
         break;
       }
     }
     if (isvalidq === true) {
-      setQuestions((draft) => {
+      setQuestionEntities((draft) => {
         draft.forEach((q) => {
           q.isCheckQ = true;
         });
       });
+      // setQuestions((draft) => {
+      //   draft.forEach((q) => {
+      //     q.isCheckQ = true;
+      //   });
+      // });
       // setQuestions([...questions]);
     }
     if (isvalidq === false) {
-      setQuestions([...questions]);
+      setQuestionEntities({ ...questionEntities });
+      // setQuestions([...questions]);
       toast.error(`Not empty valid  Question ${flagQ1 + 1} `);
       return;
     }
@@ -298,42 +321,57 @@ function QuizQA() {
     let isvalidAnswer = true;
     let flagQ = 0,
       flagA = 0;
-    for (let i = 0; i < questions.length; i++) {
-      for (let j = 0; j < questions[i].answers.length; j++) {
-        if (!questions[i].answers[j].description) {
-          questions[i].answers[j].isCheckA = false;
-          isvalidAnswer = false;
-          flagA = j;
-          flagQ = i;
-          break;
-        }
+
+    for (let i = 0; i < answerEntities.length; i++) {
+      if (!answerEntities[i].description) {
+        answerEntities[i].isCheckA = false;
+        isvalidAnswer = false;
+        flagA = i;
+        break;
       }
       if (isvalidAnswer === false) break;
     }
+    // for (let i = 0; i < questions.length; i++) {
+    //   for (let j = 0; j < questions[i].answers.length; j++) {
+    //     if (!questions[i].answers[j].description) {
+    //       questions[i].answers[j].isCheckA = false;
+    //       isvalidAnswer = false;
+    //       flagA = j;
+    //       flagQ = i;
+    //       break;
+    //     }
+    //   }
+    //   if (isvalidAnswer === false) break;
+    // }
 
     if (isvalidAnswer === true) {
-      setQuestions((draft) => {
-        draft.forEach((q) => {
-          q.answers.forEach((a) => {
-            a.isCheckA = true;
-          });
+      setAnswerEntities((draft) => {
+        draft.forEach((a) => {
+          a.isCheckA = true;
         });
       });
+
+      // setQuestions((draft) => {
+      //   draft.forEach((q) => {
+      //     q.answers.forEach((a) => {
+      //       a.isCheckA = true;
+      //     });
+      //   });
+      // });
 
       // setQuestions([...questions]);
     }
 
     if (isvalidAnswer === false) {
-      setQuestions([...questions]);
+      setAnswerEntities({ ...answerEntities });
+      // setQuestions([...questions]);
       toast.error(
         `Not empty valid Answer ${flagA + 1}  at Question ${flagQ + 1}`
       );
       return;
     }
 
-    const hasCorrectAnswer = questions.some((q) =>
-      q.answers.some((a) => a.isCorrect === true)
-    );
+    const hasCorrectAnswer = answerEntities.some((a) => a.isCorrect === true);
     if (!hasCorrectAnswer) {
       toast.error(`at least 1 question correct!`);
       return;

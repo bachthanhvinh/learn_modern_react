@@ -193,6 +193,16 @@ function QuizQA() {
       });
 
       setTimeout(() => {
+        let question = questionEntities[questionId.id];
+        if (question) {
+          if (question.answers && question.answers.length > 0) {
+            setAnswerEntities((draft) => {
+              question.answers.forEach((a) => {
+                delete draft[a];
+              });
+            });
+          }
+        }
         setQuestionIds((draft) => draft.filter((id) => id !== questionId.id));
         setQuestionEntities((draft) => {
           delete draft[questionId.id];
@@ -242,8 +252,9 @@ function QuizQA() {
       }, 300);
     }
   };
-  // console.log("answers:", answerEntities);
-  // console.log("questions:", questionEntities);
+  console.log("answers:", answerEntities);
+  console.log("questions:", questionEntities);
+  // console.log("result", questionIds);
   const handleOnChangeQuestion = (type, qId, value) => {
     if (type === "QUESTION") {
       setQuestionEntities((draft) => {
@@ -382,9 +393,7 @@ function QuizQA() {
     const CloneAnswers = _.cloneDeep(answerEntities);
     const newQuestions = [];
 
-    for (let qId in CloneQuestions) {
-      const question = CloneQuestions[qId];
-
+    for (let question of Object.values(CloneQuestions)) {
       if (question.imageFile) {
         question.imageFile = await getBase64(question.imageFile);
       }
